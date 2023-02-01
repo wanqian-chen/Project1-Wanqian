@@ -1,7 +1,7 @@
 //A command-line tool to play hello_somebody
 
 use clap::Parser;
-use prj1::{hello, delete_zero, coin, mean, median, mode, variance, std, chi_square};
+use prj1::{chi_square, coin, delete_zero, hello, mean, median, mode, std, variance};
 
 #[derive(Parser)]
 #[clap(version = "1.0", author = "Wanqian", about = "Data")]
@@ -63,10 +63,7 @@ fn main() {
         // call delete_zero function
         Some(Commands::Clean { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = delete_zero(&mut v.clone());
             println!("{:?}", result);
         }
@@ -78,60 +75,42 @@ fn main() {
         // call mean function
         Some(Commands::Mean { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = mean(&v);
             println!("{}", result);
         }
         // call median function
         Some(Commands::Median { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = median(&v);
             println!("{}", result);
         }
         // call mode function
         Some(Commands::Mode { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = mode(&v);
             println!("{:?}", result);
         }
         // call variance function
         Some(Commands::Variance { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = variance(&v);
             println!("{}", result);
         }
         // call std function
         Some(Commands::Std { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = std(&v);
             println!("{}", result);
         }
         // call chi_square function
         Some(Commands::Chi { v }) => {
             // convert string to vector
-            let v: Vec<i32> = v
-                .split(",")
-                .map(|s| s.parse().unwrap())
-                .collect();
+            let v: Vec<i32> = v.split(",").map(|s| s.parse().unwrap()).collect();
             let result = chi_square(&v);
             println!("{}", result);
         }
