@@ -1,10 +1,5 @@
 # Individual project1
 
-![Rustc Version][rustc-image]
-[![Crates.io Version][crate-image]][crate-link]
-[![Docs.rs Version][docs-image]][docs-link]
-[![dependency status][deps-image]][deps-link]
-
 @TODO: Math tool
 
 This project can calculate the statistics of a given array of numbers. The statistics include the mean, median, mode, and standard deviation. Also, it can calculate the chi-square of the given array of numbers.
