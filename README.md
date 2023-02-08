@@ -4,7 +4,9 @@
 
 This project can calculate the statistics of a given array of numbers. The statistics include the mean, median, mode, and standard deviation. Also, it can calculate the chi-square of the given array of numbers.
 
-I deployed this project on https://iesjijhu3j.us-east-1.awsapprunner.com/. You can use this link to test the project.
+It can be done by using in-line commands.
+
+Also, I deployed this project on https://iesjijhu3j.us-east-1.awsapprunner.com/. You can use this link to test the project.
 
 Feel free to check them!
 
@@ -32,6 +34,14 @@ $ cargo install --git
 ```
 
 ### Usage
+
+For in-line commands:
+
+```bash
+$ cargo run --{function-name} --{argument} {value}
+```
+
+For web server:
 
 ```bash
 $ cargo run -- --help
