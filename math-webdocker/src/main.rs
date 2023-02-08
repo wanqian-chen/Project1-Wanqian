@@ -19,7 +19,7 @@ async fn hello_world() -> impl Responder {
 #[get("/hello/{name}")]
 async fn hello_name(name: web::Path<String>) -> impl Responder {
     let name = hello(&name);
-    HttpResponse::Ok().body(format!("Hello {}!", name))
+    HttpResponse::Ok().body(format!("{}!", name))
 }
 
 // create a function that returns a vector without zero
