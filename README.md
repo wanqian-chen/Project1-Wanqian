@@ -15,7 +15,8 @@ Feel free to check them!
     - [Requirements](#requirements)
     - [Usage](#usage)
         - [Installation](#installation)
-        - [Functions](#functions)
+        - [Usage](#usage-1)
+        - [Links](#links)
     - [References](#references)
 
 ## Requirements
@@ -36,19 +37,19 @@ $ cargo install --git
 $ cargo run -- --help
 ```
 
-### Functions
+### Links
 
-https://iesjijhu3j.us-east-1.awsapprunner.com/
-A. / that returns a hello world message
-B. /hello/{name} that returns a hello message
-C. /delete_zero/{v} that returns a vector without zero
-D. /coin/{probability} that returns 1 or 0
-E. /mean/{v} that returns the mean of a list
-F. /median/{v} that returns the median of a list
-G. /mode/{v} that returns the mode of a list
-H. /variance/{v} that returns the variance of a list
-I. /std/{v} that returns the standard deviation of a list
-J. /chi_square/{v} that returns the chi-square of a list
+https://iesjijhu3j.us-east-1.awsapprunner.com/  
+A. / that returns a hello world message  
+B. /hello/{name} that returns a hello message  
+C. /delete_zero/{v} that returns a vector without zero  
+D. /coin/{probability} that returns 1 or 0  
+E. /mean/{v} that returns the mean of a list  
+F. /median/{v} that returns the median of a list  
+G. /mode/{v} that returns the mode of a list  
+H. /variance/{v} that returns the variance of a list  
+I. /std/{v} that returns the standard deviation of a list  
+J. /chi_square/{v} that returns the chi-square of a list  
 
 ## References
 
