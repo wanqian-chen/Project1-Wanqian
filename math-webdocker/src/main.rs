@@ -7,7 +7,7 @@ D. /coin/{probability} that returns 1 or 0
 
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 // import the hello function from the lib.rs file
-use math_webdocker::{coin, delete_zero, hello};
+use math_webdocker::{hello, coin, delete_zero, mean, median, mode, variance, std, chi_square};
 
 // create a function that returns a hello world message
 #[get("/")]
@@ -22,27 +22,97 @@ async fn hello_name(name: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(format!("Hello {}!", name))
 }
 
-// // create a function that returns a vector without zero
-// #[get("/delete-zero/{v}")]
-// async fn delete_zero_v(v: web::Path<String>) -> impl Responder {
-//     // convert the string to a vector
-//     let v: Vec<i32> = v.split("-").map(|s| s.parse().unwrap()).collect();
-//     let v = delete_zero(&mut v.clone());
-//     HttpResponse::Ok().body(format!("The vector without zero is {:?}", v))
-// }
+// create a function that returns a vector without zero
+#[get("/nozero/{string}")]
+async fn delete_zero_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let mut v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let new_v = delete_zero(&mut v);
+    HttpResponse::Ok().body(format!("The nozero string is {:?}", new_v))
+}
 
 // create a function that returns a coin flip
 #[get("/coin/{probability}")]
-async fn coin_flip(probability: web::Path<f64>) -> impl Responder {
-    let probability_str = probability.to_string();
-    let probability: f64 = match probability_str.parse() {
-        Ok(val) => val,
-        Err(_) => return HttpResponse::BadRequest().body("Invalid number"),
-    };
+async fn coin_flip(probability: web::Path<String>) -> impl Responder {
+    // convert string to float
+    let probability: f64 = probability.parse().unwrap();
+    let result = coin(probability);
+    HttpResponse::Ok().body(format!("The coin is {}", result))
+}
 
-    // convert struc to float
-    let get_coin: i32 = coin(probability);
-    HttpResponse::Ok().body(format!("The coin flip is {}", get_coin))
+// create a function that returns a mean
+#[get("/mean/{string}")]
+async fn mean_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = mean(&v);
+    HttpResponse::Ok().body(format!("The mean is {}", result))
+}
+
+// create a function that returns a median
+#[get("/median/{string}")]
+async fn median_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = median(&v);
+    HttpResponse::Ok().body(format!("The median is {}", result))
+}
+
+// create a function that returns a mode
+#[get("/mode/{string}")]
+async fn mode_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = mode(&v);
+    HttpResponse::Ok().body(format!("The mode is {:?}", result))
+}
+
+// create a function that returns a variance
+#[get("/variance/{string}")]
+async fn variance_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = variance(&v);
+    HttpResponse::Ok().body(format!("The variance is {}", result))
+}
+
+// create a function that returns a standard deviation
+#[get("/std/{string}")]
+async fn std_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = std(&v);
+    HttpResponse::Ok().body(format!("The standard deviation is {}", result))
+}
+
+// create a function that returns a chi square
+#[get("/chi_square/{string}")]
+async fn chi_square_here(string: web::Path<String>) -> impl Responder {
+    // convert string to vector
+    let v: Vec<i32> = string
+        .split("-")
+        .map(|s| s.parse().unwrap())
+        .collect();
+    let result = chi_square(&v);
+    HttpResponse::Ok().body(format!("The chi square is {}", result))
 }
 
 // main function
@@ -51,8 +121,19 @@ async fn main() -> std::io::Result<()> {
     // add a print message to the console that the server is starting
     println!("Starting server at http://localhost:8080");
     // start the server
-    HttpServer::new(|| App::new().service(hello_world).service(hello_name))
-        .bind("0.0.0.0:8080")?
-        .run()
-        .await
+    HttpServer::new(|| App::new()
+        .service(hello_world)
+        .service(hello_name)
+        .service(delete_zero_here)
+        .service(coin_flip)
+        .service(mean_here)
+        .service(median_here)
+        .service(mode_here)
+        .service(variance_here)
+        .service(std_here)
+        .service(chi_square_here)
+    )
+    .bind("0.0.0.0:8080")?
+    .run()
+    .await
 }
