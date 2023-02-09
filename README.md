@@ -44,7 +44,7 @@ $ cargo run --{function-name} --{argument} {value}
 For web server:
 
 ```bash
-$ cargo run -- --help
+$ cargo run
 ```
 
 ### Links
